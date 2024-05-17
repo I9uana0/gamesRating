@@ -1,31 +1,24 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
 async function makeRatingFile(path, arr) {
-    fs.readFile(path, "utf8", (err, ratingFile) => {
-        if (err) {
-            console.log(err);
-            return;
+    const ratingFile = await fs.readFile(path, 'utf8');
+
+    const ratingArray = JSON.parse(ratingFile);
+
+    arr.forEach(item => {
+        if (!ratingArray.find((el) => el.id === item.id)) {
+            let obj = {
+                id: item.id,
+                title: item.title,
+                image: item.image,
+                link: item.link,
+                description: item.description,
+                rating: 0,
+            };
+            ratingArray.push(obj);
         }
-
-        const ratingArray = JSON.parse(ratingFile);
-
-        arr.forEach(item => {
-            if (!ratingArray.find((el) => el.id === item.id)) {
-                let obj = {
-                    id: item.id,
-                    title: item.title,
-                    image: item.image,
-                    link: item.link,
-                    description: item.description,
-                    rating: 0,
-                };
-                ratingArray.push(obj);
-            }
-        });
-        fs.writeFile(path, JSON.stringify(ratingArray), () => {
-            console.log("Файл записан!");
-        })
-    })
+    });
+    fs.writeFile(path, JSON.stringify(ratingArray));
 }
 
 module.exports = makeRatingFile;

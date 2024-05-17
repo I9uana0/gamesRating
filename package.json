@@ -1,0 +1,23 @@
+{
+  "name": "gamesrating",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": " nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/I9uana0/gamesRating.git"
+  },
+  "author": "I9uana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/I9uana0/gamesRating/issues"
+  },
+  "homepage": "https://github.com/I9uana0/gamesRating#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
